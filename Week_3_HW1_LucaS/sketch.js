@@ -70,6 +70,7 @@ function keyPressed(){
     rect(50, 50, 50);
     size = 5;
     stroke(col1);
+    bg = col8;
   }
 
   // Press 1 on the keyboard changes the brush color to black
