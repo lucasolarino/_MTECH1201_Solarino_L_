@@ -1,12 +1,9 @@
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth, windowHeight, WEBGL);
   angleMode(DEGREES);
 }
 
 let r = 0;
-let middle = 250;
-let quarter = 177;
-let swaprot;
 
 let startL = -100;
 let startR = 100;
@@ -28,48 +25,48 @@ let strikeType = 0;
 
 function draw() {
   background(220);
-  middle = 250 * cos(r);
-  quarter = 177 * cos(r);
-  if(middle == 250){
-    swaprot = false;
-  }
-  if(middle == -250){
-    swaprot = true;
-  }
-  if(swaprot == false){
-    ring2();
-    crystal();
-    ring1();
-  }
-  if(swaprot == true){
-    ring1();
-    crystal();
-    ring2();
-  }
-  r++;
-  console.log(swaprot);
-}
-
-function ring1() {
   push();
-  translate(windowWidth/2, windowHeight/2);
-  // rotate(90);
-  fill(255);
-  circle(0, -250, 50);
-  circle(middle, 0, 50);
-  circle(quarter, -177, 50);
-  circle(quarter, 177, 50);
+  rotateZ(r);
+  //rotateY(90);
+  ring();
   pop();
+  crystal();
+  r++;
+  console.log(r);
 }
 
-function ring2(){
+function ring(){
   push();
-  translate(windowWidth/2, windowHeight/2);
-  // rotate(90);
-  circle(0, 250, 50);
-  circle(-middle, 0, 50);
-  circle(-quarter, 177, 50);
-  circle(-quarter, -177, 50);
+  translate(0, 250);
+  sphere(25);
+  pop();
+  push();
+  translate(-177, -177);
+  sphere(25);
+  pop();
+  push();
+  translate(-250, 0);
+  sphere(25);
+  pop();
+  push();
+  translate(-177, 177);
+  sphere(25);
+  pop();
+  push();
+  translate(0, -250);
+  sphere(25);
+  pop();
+  push();
+  translate(177, 177);
+  sphere(25);
+  pop();
+  push();
+  translate(250, 0);
+  sphere(25);
+  pop();
+  push();
+  translate(177, -177);
+  sphere(25);
   pop();
 }
 
@@ -152,7 +149,7 @@ function crystal() {
   }
 
   push();
-  translate(windowWidth/2, windowHeight/2);
+  //translate(windowWidth/2, windowHeight/2);
   //background(255);
   fill(240);
   triangle(startCML, startCDL, startLM, startLD, 0, -195);
