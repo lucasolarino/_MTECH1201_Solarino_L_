@@ -182,10 +182,10 @@ function crystal() {
   push();
   //translate(windowWidth/2, windowHeight/2);
   //background(255);
-  fill(255, 160, 255);
+  fill(255, 160, 255, 180);
   triangle(startCML, startCDL, startLM, startLD, 0, -195);
   triangle(startCMR, startCDR, startRM, startRD, 0, -195);
-  fill(255, 120, 255);
+  fill(255, 120, 255, 180);
   triangle(startCML, startCDL, startLM, startLD, 0, 200);
   triangle(startCMR, startCDR, startRM, startRD, 0, 200);
   pop();
