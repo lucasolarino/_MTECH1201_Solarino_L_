@@ -2,8 +2,13 @@ function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   angleMode(DEGREES);
 }
+let phase = 0;
 
 let r = 0;
+spread = 0;
+let straight = 0;
+let diagonal = 0;
+let behind = -26;
 
 let startL = -100;
 let startR = 100;
@@ -20,53 +25,79 @@ let startCDL;
 let startRD;
 let startLD;
 
-let strike = 0;
-let strikeType = 0;
+let strike;
 
 function draw() {
   background(220);
+  if(phase >= 1){
+    if(spread < 180){
+      straight = 250 * cos(spread) + 500;
+      diagonal = 177 * cos(spread) + 354;
+    }
+    push();
+    rotateZ(90);
+    rotateX(r);
+    rotateY(r);
+    fill(220, 180, 255);
+    ring();
+    pop();
+    spread+=2;
+  }
   push();
-  rotateZ(r);
-  //rotateY(90);
-  ring();
-  pop();
+  if(phase >= 2){
+    translate(random(-3, 3), random(-3, 3));
+  }
   crystal();
+  pop();
+  if(phase >= 2){
+    strike = ceil(random(1000));
+    if(strike % 50 == 0){
+      push();
+      rotate(random(0, 360));
+      electric();
+      pop();
+    }
+  }
   r++;
-  console.log(r);
+  console.log(phase);
+}
+
+function mousePressed(){
+  phase++;
 }
 
 function ring(){
   push();
-  translate(0, 250);
-  sphere(25);
+  translate(0, straight);
+  sphere(25, 8, 8);
   pop();
   push();
-  translate(-177, -177);
-  sphere(25);
+  translate(-diagonal, -diagonal);
+  sphere(25, 8, 8);
   pop();
   push();
-  translate(-250, 0);
-  sphere(25);
+  translate(-straight, 0);
+  sphere(25, 8, 8);
   pop();
   push();
-  translate(-177, 177);
-  sphere(25);
+  translate(-diagonal, diagonal);
+  sphere(25, 8, 8);
   pop();
   push();
-  translate(0, -250);
-  sphere(25);
+  translate(0, -straight);
+  sphere(25, 8, 8);
   pop();
   push();
-  translate(177, 177);
-  sphere(25);
+  translate(diagonal, diagonal);
+  sphere(25, 8, 8);
   pop();
   push();
-  translate(250, 0);
-  sphere(25);
+  translate(straight, 0);
+  sphere(25, 8, 8);
   pop();
   push();
-  translate(177, -177);
-  sphere(25);
+  translate(diagonal, -diagonal);
+  sphere(25, 8, 8);
   pop();
 }
 
@@ -151,19 +182,27 @@ function crystal() {
   push();
   //translate(windowWidth/2, windowHeight/2);
   //background(255);
-  fill(240);
+  fill(255, 160, 255);
   triangle(startCML, startCDL, startLM, startLD, 0, -195);
   triangle(startCMR, startCDR, startRM, startRD, 0, -195);
-  fill(210);
+  fill(255, 120, 255);
   triangle(startCML, startCDL, startLM, startLD, 0, 200);
   triangle(startCMR, startCDR, startRM, startRD, 0, 200);
   pop();
 }
 
-function lightning() {
-  strike = ceil(random(1000));
-  strikeType = ceil(random(9));
-  if(strike % 100 == 0){
-    
-  }
+function electric() {
+  stroke(255, 255, 0);
+  strokeWeight(3);
+  line(20, -60, 80, -140);
+
+  line(-40, -160, -80, -110);
+  line(-90, -40, -80, -110);
+
+  line(-20, 60, -50, 160);
+  line(-20, 130, -50, 160);
+  line(-20, 130, -30, 240);
+
+  line(-40, 10, 120, -30);
+  line(110, 30, 120, -30);
 }
