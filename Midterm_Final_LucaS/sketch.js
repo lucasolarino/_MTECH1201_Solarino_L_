@@ -5,10 +5,9 @@ function setup() {
 let phase = 0;
 
 let r = 0;
-spread = 0;
+let spread = 0;
 let straight = 0;
 let diagonal = 0;
-let behind = -26;
 
 let startL = -100;
 let startR = 100;
@@ -39,6 +38,7 @@ function draw() {
     rotateX(r);
     rotateY(r);
     fill(220, 180, 255);
+    //noStroke();
     ring();
     pop();
     spread+=2;
@@ -64,6 +64,17 @@ function draw() {
 
 function mousePressed(){
   phase++;
+}
+
+function keyPressed(){
+  if(keyCode === 82){
+    phase = 0;
+
+    r = 0;
+    spread = 0;
+    straight = 0;
+    diagonal = 0;
+  }
 }
 
 function ring(){
@@ -192,7 +203,7 @@ function crystal() {
 }
 
 function electric() {
-  stroke(255, 255, 0);
+  stroke(0, 220, 255);
   strokeWeight(3);
   line(20, -60, 80, -140);
 
