@@ -27,7 +27,7 @@ let startLD;
 let strike;
 
 function draw() {
-  background(220);
+  background(0);
   if(phase >= 1){
     if(spread < 180){
       straight = 250 * cos(spread) + 500;
@@ -35,8 +35,8 @@ function draw() {
     }
     push();
     rotateZ(90);
-    rotateX(r);
-    rotateY(r);
+    rotateX(-r);
+    rotateY(-r);
     fill(220, 180, 255);
     //noStroke();
     ring();
