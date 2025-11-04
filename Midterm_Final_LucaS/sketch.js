@@ -6,8 +6,12 @@ let phase = 0;
 
 let r = 0;
 let spread = 0;
-let straight = 0;
-let diagonal = 0;
+let straight1 = 0;
+let diagonal1 = 0;
+let straight2 = 0;
+let diagonal2 = 0;
+let size1 = 25;
+let size2 = 35;
 
 let startL = -100;
 let startR = 100;
@@ -30,8 +34,10 @@ function draw() {
   background(0);
   if(phase >= 1){
     if(spread < 180){
-      straight = 250 * cos(spread) + 500;
-      diagonal = 177 * cos(spread) + 354;
+      straight1 = 250 * cos(spread) + 500;
+      diagonal1 = 177 * cos(spread) + 354;
+      straight2 = 400 * cos(spread) + 800;
+      diagonal2 = 283 * cos(spread) + 566;
     }
     push();
     rotateZ(90);
@@ -39,7 +45,14 @@ function draw() {
     rotateY(-r);
     fill(220, 180, 255);
     //noStroke();
-    ring();
+    ring(straight1, diagonal1, size1);
+    pop();
+    push();
+    rotateZ(r);
+    // rotateX(r);
+    //rotateY(-r);
+    fill(1800, 140, 255);
+    ring(straight2, diagonal2, size2);
     pop();
     spread+=2;
   }
@@ -72,43 +85,45 @@ function keyPressed(){
 
     r = 0;
     spread = 0;
-    straight = 0;
-    diagonal = 0;
+    straight1 = 0;
+    diagonal1 = 0;
+    straight2 = 0;
+    diagonal2 = 0;
   }
 }
 
-function ring(){
+function ring(s, d, r){
   push();
-  translate(0, straight);
-  sphere(25, 8, 8);
+  translate(0, s);
+  sphere(r, 8, 8);
   pop();
   push();
-  translate(-diagonal, -diagonal);
-  sphere(25, 8, 8);
+  translate(-d, -d);
+  sphere(r, 8, 8);
   pop();
   push();
-  translate(-straight, 0);
-  sphere(25, 8, 8);
+  translate(-s, 0);
+  sphere(r, 8, 8);
   pop();
   push();
-  translate(-diagonal, diagonal);
-  sphere(25, 8, 8);
+  translate(-d, d);
+  sphere(r, 8, 8);
   pop();
   push();
-  translate(0, -straight);
-  sphere(25, 8, 8);
+  translate(0, -s);
+  sphere(r, 8, 8);
   pop();
   push();
-  translate(diagonal, diagonal);
-  sphere(25, 8, 8);
+  translate(d, d);
+  sphere(r, 8, 8);
   pop();
   push();
-  translate(straight, 0);
-  sphere(25, 8, 8);
+  translate(s, 0);
+  sphere(r, 8, 8);
   pop();
   push();
-  translate(diagonal, -diagonal);
-  sphere(25, 8, 8);
+  translate(d, -d);
+  sphere(r, 8, 8);
   pop();
 }
 
