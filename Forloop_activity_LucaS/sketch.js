@@ -14,10 +14,9 @@ function dodecahedron(x, y, z, r) {
   let gr = (1+Math.sqrt(5))/2;
   let a = r * (2 * sin(180 / 5));
   let ar = a / (2 * tan(180 / 5));
-  let off = 54/5;
+  let off = 108/10;
   let h = ((a * Math.sqrt(3) * gr)/2);
   let angle = fa+off;
-  console.log(angle);
 
   for(let i = 0; i < 241; i+=120){
     push();
