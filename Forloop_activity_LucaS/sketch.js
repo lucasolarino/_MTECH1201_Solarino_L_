@@ -8,25 +8,28 @@ function setup() {
 function draw() {
   background(220);
   orbitControl();
-  let angle = acos(-Math.sqrt(5)/5);
+  let fa = acos(-Math.sqrt(5)/5);
   let gr = (1+Math.sqrt(5))/2;
   let a = 50 * (2 * sin(180 / 5));
   let ar = a / (2 * tan(180 / 5));
-  let angle2 = 180 - (2*(angle-90)) - angle;
+  let off = 180 - (2*(fa-90)) - fa;
   let h = ((a * Math.sqrt(3) * gr)/2);
+  let angle = ceil(fa+off);
+
+  console.log(angle);
 
   for(let i = 0; i < 241; i+=120){
     push();
     translate(0, -h);
     rotateY(i);
-    rotateX(angle2);
-    translate(0, 2*ar, -(50+ar)*sin(180 - angle));
+    rotateX(ceil(off));
+    translate(0, 2*ar, -(50+ar)*sin(180 - fa));
     pentagon(0, 0, 50);
     pop();
     push();
     translate(0, -h);
     rotateY(i);
-    rotateX(angle+angle2);
+    rotateX(angle);
     translate(0, -50);
     pentagon(0, 0, 50);
     pop();
@@ -36,14 +39,14 @@ function draw() {
     push();
     translate(0, h);
     rotateY(i);
-    rotateX(180+angle2);
-    translate(0, 2*ar, -(50+ar)*sin(180 - angle));
+    rotateX(180+ceil(off));
+    translate(0, 2*ar, -(50+ar)*sin(180 - fa));
     pentagon(0, 0, 50);
     pop();
     push();
     translate(0, h);
     rotateY(i);
-    rotateX(180+angle+angle2);
+    rotateX(180+angle);
     translate(0, -50);
     pentagon(0, 0, 50);
     pop();
