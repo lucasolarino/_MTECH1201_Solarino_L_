@@ -3,7 +3,7 @@ function setup() {
   angleMode(DEGREES);
 }
 
-function draw(){
+function draw() {
   background(220);
   orbitControl();
   dodecahedron(0, 0, 0, 50);
@@ -54,7 +54,7 @@ function dodecahedron(x, y, z, r) {
   }
 }
 
-function pentagon(x, y, r){
+function pentagon(x, y, r) {
   let angle = 360/5;
   beginShape();
     for(let n = 0; n < 5; n++){
