@@ -3,52 +3,53 @@ function setup() {
   angleMode(DEGREES);
 }
 
-
-
-function draw() {
+function draw(){
   background(220);
   orbitControl();
+  dodecahedron(0, 0, 0, 50);
+}
+
+function dodecahedron(x, y, z, r) {
   let fa = acos(-Math.sqrt(5)/5);
   let gr = (1+Math.sqrt(5))/2;
-  let a = 50 * (2 * sin(180 / 5));
+  let a = r * (2 * sin(180 / 5));
   let ar = a / (2 * tan(180 / 5));
-  let off = 180 - (2*(fa-90)) - fa;
+  let off = 54/5;
   let h = ((a * Math.sqrt(3) * gr)/2);
-  let angle = ceil(fa+off);
-
+  let angle = fa+off;
   console.log(angle);
 
   for(let i = 0; i < 241; i+=120){
     push();
-    translate(0, -h);
+    translate(x, -h+y , z);
     rotateY(i);
-    rotateX(ceil(off));
-    translate(0, 2*ar, -(50+ar)*sin(180 - fa));
-    pentagon(0, 0, 50);
+    rotateX(off);
+    translate(0, 2*ar, -(r+ar)*sin(180 - fa));
+    pentagon(0, 0, r);
     pop();
     push();
-    translate(0, -h);
+    translate(x, -h+y, z);
     rotateY(i);
     rotateX(angle);
-    translate(0, -50);
-    pentagon(0, 0, 50);
+    translate(0, -r);
+    pentagon(0, 0, r);
     pop();
   }
 
   for(let i = 0; i < 241; i+=120){
     push();
-    translate(0, h);
+    translate(x, h+y, z);
     rotateY(i);
-    rotateX(180+ceil(off));
-    translate(0, 2*ar, -(50+ar)*sin(180 - fa));
-    pentagon(0, 0, 50);
+    rotateX(180+off);
+    translate(0, 2*ar, -(r+ar)*sin(180 - fa));
+    pentagon(0, 0, r);
     pop();
     push();
-    translate(0, h);
+    translate(x, h+y, z);
     rotateY(i);
     rotateX(180+angle);
-    translate(0, -50);
-    pentagon(0, 0, 50);
+    translate(0, -r);
+    pentagon(0, 0, r);
     pop();
   }
 }
