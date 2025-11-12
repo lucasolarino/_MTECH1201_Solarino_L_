@@ -49,10 +49,8 @@ function draw() {
     pop();
     push();
     rotateZ(r);
-    // rotateX(r);
-    //rotateY(-r);
     fill(1800, 140, 255);
-    ring(straight2, diagonal2, size2);
+    //ring(straight2, diagonal2, size2);
     pop();
     spread+=2;
   }
