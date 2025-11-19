@@ -16,7 +16,6 @@ function dodecahedron(x, y, z, r) {
   let ar = a / (2 * tan(180 / 5));
   let off = 108/10;
   let h = ((a * Math.sqrt(3) * gr)/2);
-  let angle = fa+off;
 
   for(let i = 0; i < 241; i+=120){
     push();
@@ -24,14 +23,14 @@ function dodecahedron(x, y, z, r) {
     rotateY(i);
     rotateX(off);
     translate(0, 2*ar, -(r+ar)*sin(180 - fa));
-    pentagon(0, 0, r);
+    pentagon(r);
     pop();
     push();
     translate(x, -h+y, z);
     rotateY(i);
-    rotateX(angle);
+    rotateX(fa+off);
     translate(0, -r);
-    pentagon(0, 0, r);
+    pentagon(r);
     pop();
   }
 
@@ -41,24 +40,23 @@ function dodecahedron(x, y, z, r) {
     rotateY(i);
     rotateX(180+off);
     translate(0, 2*ar, -(r+ar)*sin(180 - fa));
-    pentagon(0, 0, r);
+    pentagon(r);
     pop();
     push();
     translate(x, h+y, z);
     rotateY(i);
-    rotateX(180+angle);
+    rotateX(180+fa+off);
     translate(0, -r);
-    pentagon(0, 0, r);
+    pentagon(r);
     pop();
   }
 }
 
-function pentagon(x, y, r) {
-  let angle = 360/5;
+function pentagon(r) {
   beginShape();
     for(let n = 0; n < 5; n++){
-      let sx = x + sin(n * angle) * r;
-      let sy = y + cos(n * angle) * r;
+      let sx = sin(n * (360/5)) * r;
+      let sy = cos(n * (360/5)) * r;
       vertex(sx, sy);
     }
   endShape(CLOSE);
