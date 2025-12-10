@@ -1,41 +1,28 @@
 let tetra;
+let toggle = 0;
+let explodeAngle = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   angleMode(DEGREES);
+  tetra = new tetrahedron(0, 0, 0, 100);
 }
 
 function draw() {
   background(220);
   orbitControl();
-  tetra = new tetrahedron(0, 0, 0, 50);
+ 
   tetra.drawTetrahedron();
+  if(toggle % 2 != 0) {
+    tetra.explodeTetrahedron();
+  } else if(toggle % 2 == 0) {
+    tetra.closeTetrahedron();
+  }
 }
 
 function mousePressed() {
-  
+  toggle++;
 }
-// function tetrahedron(x, y, z, r) {
-//   let fa = 180 - acos(-1/3);
-//   let ar = r * sin(30);
-//   let off = r * cos(fa);
-
-//   for(let i = 0; i < 241; i+=120) {
-//     push();
-//     translate(x, y, z);
-//     rotateY(i);
-//     translate(0, 0, off);
-//     rotateX(90 - fa);
-//     eqTriangle(r);
-//     pop();
-//   }
-//   push();
-//   translate(x, y, z);
-//   rotateX(90);
-//   translate(0, 0, -ar * sin(fa));
-//   eqTriangle(r);
-//   pop();
-// }
 
 function eqTriangle(r) {
   triangle(0, -r, -r * cos(30), r * sin(30), r * cos(30), r * sin(30));
@@ -74,6 +61,16 @@ class tetrahedron {
   }
 
   explodeTetrahedron() {
-    this.explode = 20;
+    if(explodeAngle < 90) {
+      this.explode = (this.r)*sin(explodeAngle);
+      explodeAngle++;
+    }
+  }
+
+  closeTetrahedron() {
+    if(explodeAngle > 0) {
+      this.explode = (this.r)*(sin(explodeAngle-90)+1);
+      explodeAngle--;
+    }
   }
 }
