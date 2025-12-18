@@ -15,7 +15,6 @@ let explodeAngleDodeca = 0;
 let spinTetra = 0;
 let spinCube = 0;
 let spinDodeca = 0;
-
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   angleMode(DEGREES);
@@ -26,10 +25,15 @@ function setup() {
   dodecaMenu = new dodecahedron(0, 0, 0, 50);
 }
 
+// Controls: 
+// Click on an object to view it
+// Once viewing an object, use the mouse to orbit it
+// hit X to see the exploded view
+// hit E to return to the main menu
+
 function draw() {
   background(220);
-  //orbitControl();
-  
+
   push();
   translate(-300,20);
   rotateY(spinTetra);
@@ -68,6 +72,32 @@ function draw() {
   } else {
     spinCube = 0;
   }
+}
+
+function mousePressed() {
+  if((mouseX > (width/2 + 220) && mouseX < (width - 250)) && (mouseY > (height/2 - 70) && mouseY < (height/2 + 75))) {
+    redirectDodeca();
+  }
+
+  if((mouseX > (width/2-60) && mouseX < (width/2 + 60)) && (mouseY > (height/2 - 60) && mouseY < (height/2 + 60))) {
+    redirectCube();
+  }
+
+  if((mouseX > 260 && mouseX < (width/2 - 250)) && (mouseY > (height/2 - 50) && mouseY < (height/2 + 60))) {
+    redirectTetra();
+  }
+}
+
+function redirectDodeca() {
+  window.location.href = "dodecahedron.html";
+}
+
+function redirectCube() {
+  window.location.href = "cube.html";
+}
+
+function redirectTetra() {
+  window.location.href = "tetrahedron.html";
 }
 
 function eqTriangle(r) {
